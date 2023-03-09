@@ -31,7 +31,7 @@ async def generate_custom_thumbnail(bot, update):
     if update.from_user.id in Config.BANNED_USERS:
         await bot.delete_messages(
             chat_id=update.chat.id,
-            message_ids=update.id,
+            message_ids=update.message_id,
             revoke=True
         )
         return
