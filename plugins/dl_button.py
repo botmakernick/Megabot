@@ -94,14 +94,14 @@ async def ddl_call_back(bot, update):
                 youtube_dl_url,
                 download_directory,
                 update.message.chat.id,
-                update.message.message_id,
+                update.message.id,
                 c_time
             )
         except asyncio.TimeOutError:
             await bot.edit_message_text(
                 text=Translation.SLOW_URL_DECED,
                 chat_id=update.message.chat.id,
-                message_id=update.message.message_id
+                message_id=update.message.id
             )
             return False
     if os.path.exists(download_directory):
@@ -122,7 +122,7 @@ async def ddl_call_back(bot, update):
             await bot.edit_message_text(
                 chat_id=update.message.chat.id,
                 text=Translation.RCHD_TG_API_LIMIT,
-                message_id=update.message.message_id
+                message_id=update.message.id
             )
         else:
             # get the correct width, height, and duration for videos greater than 10MB
@@ -251,7 +251,7 @@ async def ddl_call_back(bot, update):
         await bot.edit_message_text(
             text=Translation.NO_VOID_FORMAT_FOUND.format("Incorrect Link"),
             chat_id=update.message.chat.id,
-            message_id=update.message.message_id,
+            message_id=update.message.id,
             disable_web_page_preview=True
         )
 
@@ -301,7 +301,7 @@ ETA: {}""".format(
                         if current_message != display_message:
                             await bot.edit_message_text(
                                 chat_id,
-                                message_id,
+                                id,
                                 text=current_message
                             )
                             display_message = current_message
